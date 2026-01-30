@@ -56,6 +56,13 @@ def create_tables():
     drinks_df = orders_df[["drink_name","drink_size","drink_price"]].drop_duplicates().reset_index(drop=True)
     drinks_df["drink_id"] = drinks_df.index + 1
 
-    return f"{customers_df} \n {drinks_df}"
+    baristas_df = orders_df[["barista_name"]].drop_duplicates().reset_index(drop=True)
+    baristas_df["barista_id"] = baristas_df.index + 1
+
+    
+
+
+
+    return f"{customers_df} \n {drinks_df} \n {baristas_df}"
 print(create_tables())
 
