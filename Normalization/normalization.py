@@ -33,4 +33,24 @@ messy_data = [
 ]
 
 orders_df = pd.DataFrame(messy_data)
-print(orders_df)
+# print(orders_df)
+
+"""""Now I am going to start by looking at customers:
+        "customer_name": "Sam",
+        "customer_phone": "0712345678",
+         "customer_name": "Sam",
+        "customer_phone": "0712345678",
+        "customer_name": "Jamie",
+        "customer_phone": "0798765432",
+
+
+        I will remove duplicates and add a customers_id column
+
+"""""
+
+def create_tables():
+    customers_df = orders_df[["customer_name","customer_phone"]].drop_duplicates().reset_index(drop=True)
+    customers_df["customer_id"] = customers_df.index + 1
+    return customers_df
+print(create_tables())
+
