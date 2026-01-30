@@ -46,7 +46,7 @@ orders_df = pd.DataFrame(messy_data)
 
         I will remove duplicates and add a customers_id column
 
-        I will do the same for drinks , baristas and orders
+        I will do the same for drinks and baristas
 
 """""
 
