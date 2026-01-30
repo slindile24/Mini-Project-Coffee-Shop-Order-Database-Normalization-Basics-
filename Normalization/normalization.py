@@ -1,4 +1,5 @@
 import pandas as pd
+import sqlite3
 
 messy_data = [
     {
@@ -77,7 +78,36 @@ def normalization(orders_df,customers_df,drinks_df,baristas_df):
 
 customers_df, drinks_df, baristas_df = create_tables(orders_df)
 
-print(normalization(orders_df, customers_df, drinks_df, baristas_df))
+# print(normalization(orders_df, customers_df, drinks_df, baristas_df))
+
+
+def load_to_sqlite(customers_df, drinks_df, baristas_df, orders_finalized):
+    conn = sqlite3.connect("coffee_shop.db")
+
+    customers_df[["customer_id", "customer_name", "customer_phone"]].to_sql(
+        "customers", conn, if_exists="replace", index=False
+    )
+
+    drinks_df[["drink_id", "drink_name", "drink_size", "drink_price"]].to_sql(
+        "drinks", conn, if_exists="replace", index=False
+    )
+
+    baristas_df[["barista_id", "barista_name"]].to_sql(
+        "baristas", conn, if_exists="replace", index=False
+    )
+
+    orders_finalized.to_sql(
+        "orders", conn, if_exists="replace", index=False
+    )
+
+    conn.close()
+    print("Data successfully loaded into coffee_shop.db ")
+
+orders_finalized = normalization(orders_df,customers_df,drinks_df,baristas_df)
+
+load_to_sqlite(customers_df, drinks_df, baristas_df, orders_finalized)
+
+
 
 
 
