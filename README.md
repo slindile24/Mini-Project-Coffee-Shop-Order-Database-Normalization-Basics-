@@ -1,4 +1,9 @@
-# Mini-Project-Coffee-Shop-Order-Database-Normalization-Basics-
+# Mini-Project-Coffee-Shop-Order-Database-Normalization-Basics
+
+## What this project is about:
+This project demonstrates basic database normalization by transforming a denormalized coffee shop order table into a structured relational database. The design removes redundancy, enforces relationships using primary and foreign keys, and improves data integrity.
+
+
 Table to work with:
 
 | OrderID | CustomerName | CustomerPhone | DrinkName  | DrinkSize | DrinkPrice | BaristaName |
