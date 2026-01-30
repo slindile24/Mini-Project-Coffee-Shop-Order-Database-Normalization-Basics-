@@ -43,14 +43,19 @@ orders_df = pd.DataFrame(messy_data)
         "customer_name": "Jamie",
         "customer_phone": "0798765432",
 
-
         I will remove duplicates and add a customers_id column
+
+        I will do the same for drinks , baristas and orders
 
 """""
 
 def create_tables():
     customers_df = orders_df[["customer_name","customer_phone"]].drop_duplicates().reset_index(drop=True)
     customers_df["customer_id"] = customers_df.index + 1
-    return customers_df
+
+    drinks_df = orders_df[["drink_name","drink_size","drink_price"]].drop_duplicates().reset_index(drop=True)
+    drinks_df["drink_id"] = drinks_df.index + 1
+
+    return f"{customers_df} \n {drinks_df}"
 print(create_tables())
 
