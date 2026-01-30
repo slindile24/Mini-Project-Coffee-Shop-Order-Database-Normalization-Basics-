@@ -19,5 +19,11 @@ class TestCase(unittest.TestCase):
         self.assertFalse(drinks_df.duplicated(subset=["drink_name","drink_size","drink_price"]).any())
         self.assertFalse(baristas_df.duplicated(subset=["barista_name"]).any())
 
+
+    def test_no_missing_ids(self):
+        self.assertFalse(orders_finalized["customer_id"].isnull().any())
+        self.assertFalse(orders_finalized["drink_id"].isnull().any())
+        self.assertFalse(orders_finalized["barista_id"].isnull().any())
+
 if __name__ == "__main__":
     unittest.main()
