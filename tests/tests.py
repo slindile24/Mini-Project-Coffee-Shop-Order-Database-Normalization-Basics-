@@ -9,7 +9,7 @@ import pandas
         "drink_name": "Latte",
         "drink_size": "Large",
         "drink_price": 45,
-        "barista_name": "Alex"  
+        "barista_name": "Alex" 
         """
 
 class TestCase(unittest.TestCase):
@@ -24,6 +24,11 @@ class TestCase(unittest.TestCase):
         self.assertFalse(orders_finalized["customer_id"].isnull().any())
         self.assertFalse(orders_finalized["drink_id"].isnull().any())
         self.assertFalse(orders_finalized["barista_id"].isnull().any())
+
+    def test_id_exist_in_parent_table(self):
+        self.assertTrue(set(orders_finalized["customer_id"]).issubset(set(customers_df["customer_id"])))
+        self.assertTrue(set(orders_finalized["drink_id"]).issubset(set(drinks_df["drink_id"])))
+        self.assertTrue(set(orders_finalized["barista_id"]).issubset(set(baristas_df["barista_id"])))
 
 if __name__ == "__main__":
     unittest.main()
